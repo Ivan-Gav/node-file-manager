@@ -1,7 +1,7 @@
 import { stdin, stdout } from "node:process";
 import readline from "node:readline/promises";
 
-import { getUserName, logCurrentDir, setStartDir } from "#utils";
+import { getUserName, logCurrentDir, setStartDir, logError } from "#utils";
 import { handleCommand } from "#commands";
 
 let username;
@@ -11,7 +11,7 @@ try {
   setStartDir();
   logCurrentDir();
 } catch (err) {
-  console.error("Invalid input");
+  logError(err);
   process.exit(1);
 }
 
@@ -41,7 +41,7 @@ try {
     } catch (err) {
       const message = "message" in err ? err.message : String(err);
       if (message === "Invalid input" || message === "Operation failed") {
-        console.error(message);
+        logError(err);
       } else {
         throw err;
       }
@@ -51,7 +51,7 @@ try {
   if (err?.code === "ABORT_ERR") {
     onExit(); // Ctrl+C
   } else {
-    console.error(err);
+    logError(err);
     process.exit(1);
   }
 }

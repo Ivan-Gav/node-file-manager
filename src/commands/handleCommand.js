@@ -1,4 +1,5 @@
 import { ls, cd, up } from "./navigation.js";
+import { cat, add, mkdir, rn, cp, mv, rm } from "./files.js";
 
 export const handleCommand = async (input) => {
   const [commandName, ...args] = input.split(/\s+/);
@@ -7,6 +8,13 @@ export const handleCommand = async (input) => {
     ls,
     up,
     cd,
+    cat,
+    add,
+    mkdir,
+    rn,
+    cp,
+    mv,
+    rm,
   };
 
   const command = commands[commandName];
@@ -14,7 +22,7 @@ export const handleCommand = async (input) => {
     await command(args);
   } else {
     throw new Error("Invalid input", {
-      cause: `something is wrong with this command: ${input}`,
+      cause: `wrong command: ${input}`,
     });
   }
 };

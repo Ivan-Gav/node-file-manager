@@ -1,7 +1,7 @@
 import { readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
-import { throwOperatiionFailed } from "#utils";
+import { throwAppError } from "#utils";
 
 export const up = () => {
   const parentDir = path.dirname(process.cwd());
@@ -12,15 +12,15 @@ export const up = () => {
 
 export const cd = (args) => {
   if (!args || args.length === 0) {
-    throw new Error("Invalid input");
+    throw new Error("Invalid input", { cause: "arguments expected" });
   }
 
-  const targetPath = path.resolve(process.cwd(), args[0]);
+  const targetPath = path.resolve(process.cwd(), args.join(" "));
 
   try {
     process.chdir(targetPath);
   } catch (err) {
-    throwOperatiionFailed(err);
+    throwAppError(err);
   }
 };
 
@@ -50,6 +50,6 @@ export const ls = async () => {
 
     console.table(sorted);
   } catch (err) {
-    throwOperatiionFailed(err);
+    throwAppError(err);
   }
 };
