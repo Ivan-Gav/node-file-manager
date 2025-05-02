@@ -18,5 +18,9 @@ export const getUserName = () => {
     throw new Error("multiple user names are not allowed");
   }
 
+  if (!values.username[0]) {
+    throw new Error("user name should be specified");
+  }
+
   return values.username[0];
 };
