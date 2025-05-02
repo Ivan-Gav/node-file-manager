@@ -1,12 +1,14 @@
 import { stdin, stdout } from "node:process";
 import readline from "node:readline/promises";
 
-import { getUserName } from "#utils";
+import { getUserName, logCurrentDir, setStartDir } from "#utils";
 
 let username;
 try {
   username = getUserName();
   console.log(`Welcome to the File Manager, ${username}!`);
+  setStartDir();
+  logCurrentDir();
 } catch (error) {
   console.error("Invalid input");
   // throw new Error("Invalid input")
@@ -20,6 +22,8 @@ const onExit = () => {
 };
 
 process.on("SIGINT", onExit);
+
+//--------------------------------------------------------------------------
 
 const commands = {
   ".exit": onExit,

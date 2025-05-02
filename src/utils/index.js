@@ -1,1 +1,3 @@
-export * from "./getUserName.js";
+export { getUserName } from "./getUserName.js";
+export { logCurrentDir } from "./logCurrentDir.js";
+export { setStartDir } from "./setStartDir.js";
