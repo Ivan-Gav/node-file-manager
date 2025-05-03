@@ -6,7 +6,11 @@
     "node": ">=22.14.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js"
+  },
+  "imports": {
+    "#utils": "./src/utils/index.js",
+    "#commands": "./src/commands/index.js"
   },
   "keywords": [],
   "author": "",
