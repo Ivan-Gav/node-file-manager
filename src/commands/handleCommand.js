@@ -2,6 +2,7 @@ import { ls, cd, up } from "./navigation.js";
 import { cat, add, mkdir, rn, cp, mv, rm } from "./files.js";
 import { os } from "./os.js";
 import { hash } from "./hash.js";
+import { compress, decompress } from "./brotli.js";
 
 export const handleCommand = async (input) => {
   const [commandName, ...args] = input.split(/\s+/);
@@ -19,6 +20,8 @@ export const handleCommand = async (input) => {
     rm,
     os,
     hash,
+    compress,
+    decompress,
   };
 
   const command = commands[commandName];
