@@ -1,6 +1,7 @@
 import { ls, cd, up } from "./navigation.js";
 import { cat, add, mkdir, rn, cp, mv, rm } from "./files.js";
 import { os } from "./os.js";
+import { hash } from "./hash.js";
 
 export const handleCommand = async (input) => {
   const [commandName, ...args] = input.split(/\s+/);
@@ -17,6 +18,7 @@ export const handleCommand = async (input) => {
     mv,
     rm,
     os,
+    hash,
   };
 
   const command = commands[commandName];

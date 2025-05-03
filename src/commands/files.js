@@ -33,7 +33,8 @@ export const add = async (args) => {
     const fileName = args.join(" ");
 
     const filePath = path.resolve(process.cwd(), fileName);
-    await open(filePath, "wx");
+    const file = await open(filePath, "wx");
+    file.close();
     console.log(`File "${fileName}" has been created`);
   } catch (err) {
     throwAppError(err);
